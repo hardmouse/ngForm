@@ -1,0 +1,54 @@
+<hr />
+<form [formGroup]="questionsForm" (ngSubmit)="onSubmit()">
+	<div class="form-wrapper" formArrayName="questionArray">
+		<div *ngFor="let question of questionsData; let i = index" [formGroupName]="i" class="card">
+			<h3>{{question.linkId}}. {{question.text}} ({{question.type}})</h3>
+			<div *ngIf="question.type=='boolean'">
+				<input type="checkbox" formControlName="answer">Yes
+    </div>
+				<div formArrayName="questionArrayDetail">
+					<div *ngFor="let subQuestion of question.item; let j = index" [formGroupName]="j"
+						class="sub-questions">
+						<label>{{subQuestion.linkId}} - {{subQuestion.text}}</label>
+						<div *ngIf="subQuestion.type=='boolean'">
+							<!-- <input type="checkbox" formControlName="subQuestionAnswer">Yes -->
+							<label><input type="radio" value="Yes" formControlName="subQuestionAnswer"><span>Yes</span></label>
+							<label><input type="radio" value="No" formControlName="subQuestionAnswer"><span>No</span></label>
+						</div>
+						<div *ngIf="subQuestion.type=='date' && subQuestion.linkId=='2.2'">
+							<input type="date" formControlName="subQuestionAnswer">
+        </div>
+							<div *ngIf="subQuestion.type=='string'">
+								<select id="gender" *ngIf="subQuestion.linkId=='2.1'" formControlName="subQuestionAnswer">
+          <option *ngFor="let c of genderList" [value]="c.name">{{c.name}}</option>
+        </select>
+								<select id="country" *ngIf="subQuestion.linkId=='2.3'" formControlName="subQuestionAnswer">
+          <option *ngFor="let c of conutryList" [value]="c.name">{{c.name}}</option>
+        </select>
+								<select id="status" *ngIf="subQuestion.linkId=='2.4'" formControlName="subQuestionAnswer">
+          <option *ngFor="let c of statusList" [value]="c.name">{{c.name}}</option>
+        </select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="submit" class="btn"/>
+          </div>
+</form>
+
+<div *ngIf="answerChecked" class="answer-wrapper">
+	<div *ngFor="let res of result" class="answer-board">
+		<h3>{{res.id+". "+res.text}}</h3>
+		<p *ngIf="res.answer">YES</p>
+		<p *ngIf="!res.answer && res.questionArrayDetail.length <= 0">NO</p>
+		<div *ngIf="res.questionArrayDetail.length > 0" class="sub-answer">
+			<div *ngFor="let sub of res.questionArrayDetail">
+				<h4>{{sub.id+" - "+sub.text}}</h4>
+				<p *ngIf="sub.subQuestionAnswer">{{sub.subQuestionAnswer}}</p>
+				<p *ngIf="!sub.subQuestionAnswer">
+					No Answer
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

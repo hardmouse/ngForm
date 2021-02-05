@@ -1,0 +1,20 @@
+<div>
+	<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()" novalidate>
+		<ng-container *ngFor="let controls of fields">
+			{{controls.label}}
+			<input [type]="controls.type" [formControlName]="controls.label" style="display: block;"/>
+			<ng-container *ngFor="let validation of controls.validations">
+				<span *ngIf="dynamicForm.controls[controls.label].touched && dynamicForm.controls[controls.label].errors">
+          <p *ngIf="dynamicForm.controls[controls.label].errors[validation.name]">
+            {{validation.message}}
+          </p>
+        </span>
+			</ng-container>
+  </ng-container>
+			<input type="submit" [disabled]="!dynamicForm.valid || submittedSuccess" class="btn" style="display: block;"/>
+</form>
+</div>
+<div *ngIf="submittedSuccess">
+	<app-questions>
+	</app-questions>
+</div>
