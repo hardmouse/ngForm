@@ -1,36 +1,41 @@
 .card {
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    background-color: #EFEFEF;
-    padding: 0 0 0.5rem;
-    margin-bottom: 1rem;
-    h3{
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #efefef;
+  padding: 0 0 0.5rem;
+  margin-bottom: 1rem;
+  h3 {
+    margin: 0;
+    padding: 0.5rem;
+    background-color: #ddd;
+  }
+  .sub-questions {
+    padding: 0.5rem 1rem;
+  }
+}
+.answer-wrapper {
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  background-color: #efefef;
+  padding: 0.5rem;
+  margin-bottom: 3rem;
+  h3 {
+    background-color: #ddd;
+  }
+  .answer-board {
+    padding-bottom: 1rem;
+    h3,
+    h4,
+    p {
+      padding: 0;
       margin: 0;
-      padding: 0.5rem;
-      
-    background-color: #DDD;
     }
-    .sub-questions {
-      padding: 0.5rem 1rem;
+    .sub-answer {
+      padding-left: 1rem;
     }
   }
-  .answer-wrapper{
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    background-color: #EFEFEF;
-    padding: 0.5rem;
-    margin-bottom: 3rem;
-    h3{
-        background-color: #DDD;
-    }
-    .answer-board{
-        padding-bottom: 1rem;
-      h3,h4,p{
-        padding:0;
-        margin: 0;
-      }
-      .sub-answer{
-        padding-left: 1rem;
-      }
-    }
+}
+
+  .answer-indent{
+    padding-left: 1rem;
   }

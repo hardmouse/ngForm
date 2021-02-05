@@ -297,9 +297,8 @@ export class QuestionsComponent implements OnInit {
       questionArray: this.fb.array([])
     });
     this.dataService.getData().subscribe(data => {
-      this.questionsData = data['item'];
       // console.log("---",data);
-      // console.log("--11-",data['item']);
+      this.questionsData = data['item'];
       for (let i = 0; i < this.questionsData.length; i++) {
         this.questionsData[i].answer = "";
         const newItem = this.fb.group({
